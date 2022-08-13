@@ -1,0 +1,34 @@
+﻿<Application
+    x:Class="CommunityToolkitStudy.Wpf.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:CommunityToolkitStudy.Wpf"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
+    DispatcherUnhandledException="Application_DispatcherUnhandledException"
+    StartupUri="Views/MainWindow.xaml">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <BooleanToVisibilityConverter x:Key="BoolToVisiConverter" />
+
+            <system:Int32 x:Key="Int1">1</system:Int32>
+            <system:Int32 x:Key="Int2">2</system:Int32>
+            <system:Int32 x:Key="Int3">3</system:Int32>
+            <system:Int32 x:Key="Int4">4</system:Int32>
+
+            <!--  フォントサイズ  -->
+            <system:Double x:Key="FontSizeDefault">12</system:Double>
+            <system:Double x:Key="FontSizeItemTitle">16</system:Double>
+            <system:Double x:Key="FontSizeItemSubtitle">12</system:Double>
+            <system:Double x:Key="FontSizeItemKeywords">8</system:Double>
+            <system:Double x:Key="FontSizeTitle">20</system:Double>
+            <system:Double x:Key="FontSizeSubtitle">14</system:Double>
+            <system:Double x:Key="FontSizeDescription">12</system:Double>
+            <system:Double x:Key="FontSizeKeywords">12</system:Double>
+            <system:Double x:Key="FontSizeLarge">18</system:Double>
+            <system:Double x:Key="FontSizeMiddle">14</system:Double>
+            <system:Double x:Key="FontSizeSmall">12</system:Double>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
