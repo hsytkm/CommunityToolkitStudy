@@ -1,7 +1,9 @@
-﻿using CommunityToolkitStudy.Wpf.Views.Controls;
+﻿using System.Collections.ObjectModel;
+using CommunityToolkitStudy.Wpf.Views.Controls;
 
 namespace CommunityToolkitStudy.Wpf.Views.Observables;
 
+// https://docs.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/generators/observableproperty
 public partial class ObservableProperty1Page : MyPageControlBase
 {
     public ObservableProperty1Page()
@@ -11,24 +13,23 @@ public partial class ObservableProperty1Page : MyPageControlBase
     }
 }
 
-//[INotifyPropertyChanged]  極力使用しない(ファイルサイズ増)
+//[INotifyPropertyChanged]  // Do not use as much as possible (because of increase file size)
 internal sealed partial class ObserveProperty1ViewModel : ObservableObject
 {
-    public int CounterSum => Counter1 + Counter2;
+    [ObservableProperty]    // "Name" property is generated in the partial class.
+    private string _name = "abc";
 
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(CounterSum))]
-    [NotifyCanExecuteChangedFor(nameof(CountUp2Command))]
-    private int _counter1;
+    public ObservableCollection<string> Messages { get; } = new();
 
-    [RelayCommand]
-    private void CountUp1() => Counter1++;
+    // Called before value is set.
+    partial void OnNameChanging(string value)
+    {
+        Messages.Add($"{nameof(OnNameChanging)}({value})");
+    }
 
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(CounterSum))]
-    private int _counter2;
-
-    [RelayCommand(CanExecute = nameof(CanCountUp2))]
-    private void CountUp2(int value) => Counter2 += value;
-    private bool CanCountUp2() => (Counter1 & 1) == 1;  // 奇数のみ有効化
+    // Called after value is set.
+    partial void OnNameChanged(string value)
+    {
+        Messages.Add($"{nameof(OnNameChanged)}({value})");
+    }
 }

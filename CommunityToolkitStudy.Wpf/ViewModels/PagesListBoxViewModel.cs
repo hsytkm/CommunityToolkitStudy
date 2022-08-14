@@ -11,7 +11,7 @@ namespace CommunityToolkitStudy.Wpf.ViewModels;
 
 internal sealed class PagesListBoxViewModel : ObservableObject
 {
-    public IReadOnlyList<IPageSourceProvider> PagesSource => PageSourceStore.AllPageList;
+    public IReadOnlyList<IPageSourceProvider> PagesSource { get; } = PageSourceStore.All;
 
     // リストの文字列による絞り込み
     public ICommand FilterCommand => _filterCommand ??= new RelayCommand<string>(pattern =>
@@ -55,5 +55,9 @@ internal sealed class PagesListBoxViewModel : ObservableObject
         }
     }
     private UserControl? _targetControl;
-}
 
+    public PagesListBoxViewModel()
+    {
+        SelectedPageSource = PagesSource[0];
+    }
+}

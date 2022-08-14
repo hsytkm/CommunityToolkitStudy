@@ -6,12 +6,9 @@ namespace CommunityToolkitStudy.Wpf.Views;
 
 internal static class PageSourceStore
 {
-    internal static IReadOnlyList<IPageSourceProvider> AllPageList => new IPageSourceProvider[]
+    internal static IReadOnlyList<IPageSourceProvider> All { get; } = new IPageSourceProvider[]
     {
-        /* 未対応
-        *  CatchIgnore ErrorChangedAsObservable 
-        *  ObserveErrorInfo OnErrorRetry
-        */
         new PageSourceProvider<ObservableProperty1Page>(),
+        new PageSourceProvider<ObservableProperty2Page>(),
     };
 }

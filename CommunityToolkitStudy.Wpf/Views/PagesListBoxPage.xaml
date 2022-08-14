@@ -42,15 +42,23 @@
             ItemsSource="{Binding PagesSource, Mode=OneTime}"
             SelectedItem="{Binding SelectedPageSource, Mode=TwoWay}">
 
-            <!--<i:Interaction.Triggers>
-                <i:EventTrigger EventName="Loaded">
-                    <action:SelectorSelectedIndexZeroAction />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>-->
+            <!--  Fix binding error : https://stackoverflow.com/a/636862  -->
+            <ListBox.ItemContainerStyle>
+                <Style BasedOn="{StaticResource {x:Type ListBoxItem}}" TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="OverridesDefaultStyle" Value="True" />
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                </Style>
+            </ListBox.ItemContainerStyle>
 
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Margin="2">
+                    <StackPanel
+                        Margin="2"
+                        ToolTip="{Binding Description, Mode=OneTime}"
+                        ToolTipService.InitialShowDelay="500">
                         <TextBlock
                             Margin="0"
                             FontSize="{StaticResource FontSizeItemTitle}"

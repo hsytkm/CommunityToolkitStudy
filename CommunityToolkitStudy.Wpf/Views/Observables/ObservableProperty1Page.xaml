@@ -12,38 +12,29 @@
     mc:Ignorable="d">
 
     <controls:MyPageControlBase.Subtitle>
-        Modelとの接続
+        監視可能プロパティ
     </controls:MyPageControlBase.Subtitle>
 
     <controls:MyPageControlBase.Description>
-        Model (INotifyPropertyChanged) から 一定時間 で発行されるデータを購読
+        文字列入力時の変更イベントを発行します
     </controls:MyPageControlBase.Description>
 
     <controls:MyPageControlBase.Keywords>
         <x:Array Type="{x:Type system:String}">
-            <system:String>ObserveProperty</system:String>
-            <system:String>Observable.Timer</system:String>
+            <system:String>SourceGenerator</system:String>
+            <system:String>OnPropertyChanging()</system:String>
+            <system:String>OnPropertyChanged()</system:String>
         </x:Array>
     </controls:MyPageControlBase.Keywords>
 
-    <StackPanel Margin="10">
-        <Panel.Resources>
-            <Style TargetType="{x:Type TextBlock}">
-                <Setter Property="HorizontalAlignment" Value="Center" />
-                <Setter Property="FontSize" Value="{StaticResource FontSizeMiddle}" />
-            </Style>
-        </Panel.Resources>
-        <Button Command="{Binding CountUp1Command}" Content="Counter1++" />
-        <TextBlock Text="{Binding Counter1}" />
+    <DockPanel Margin="10">
+        <ContentControl Content="{Binding HeaderPanel, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:MyPageControlBase}}}" DockPanel.Dock="Top" />
 
-        <Button
-            Margin="0,10,0,0"
-            Command="{Binding CountUp2Command}"
-            CommandParameter="{StaticResource Int2}"
-            Content="Counter2 += 2 (when Counter1 is odd only)" />
-        <TextBlock Text="{Binding Counter2}" />
-
-        <TextBlock Margin="0,10,0,0" Text="{Binding CounterSum, StringFormat='Sum = {0}'}" />
-
-    </StackPanel>
+        <TextBox DockPanel.Dock="Top" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock
+            Margin="0,5"
+            DockPanel.Dock="Top"
+            Text="Event Log" />
+        <ListBox ItemsSource="{Binding Messages}" />
+    </DockPanel>
 </controls:MyPageControlBase>
