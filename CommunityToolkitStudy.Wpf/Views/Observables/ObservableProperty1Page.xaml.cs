@@ -4,7 +4,7 @@ using CommunityToolkitStudy.Wpf.Views.Controls;
 namespace CommunityToolkitStudy.Wpf.Views.Observables;
 
 // https://docs.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/generators/observableproperty
-public partial class ObservableProperty1Page : MyPageControlBase
+public sealed partial class ObservableProperty1Page : MyPageControlBase
 {
     public ObservableProperty1Page()
     {
@@ -22,13 +22,13 @@ internal sealed partial class ObserveProperty1ViewModel : ObservableObject
     public ObservableCollection<string> Messages { get; } = new();
 
     // Called before value is set.
-    partial void OnNameChanging(string value)
+    partial void OnNameChanging(string value)   // Argument name is "value"
     {
         Messages.Add($"{nameof(OnNameChanging)}({value})");
     }
 
     // Called after value is set.
-    partial void OnNameChanged(string value)
+    partial void OnNameChanged(string value)   // Argument name is "value"
     {
         Messages.Add($"{nameof(OnNameChanged)}({value})");
     }

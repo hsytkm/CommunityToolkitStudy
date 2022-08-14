@@ -3,7 +3,7 @@
 namespace CommunityToolkitStudy.Wpf.Views.Observables;
 
 // https://docs.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/generators/observableproperty#notifying-dependent-properties
-public partial class ObservableProperty2Page : MyPageControlBase
+public sealed partial class ObservableProperty2Page : MyPageControlBase
 {
     public ObservableProperty2Page()
     {
