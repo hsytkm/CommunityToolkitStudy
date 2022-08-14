@@ -13,6 +13,8 @@ internal static class PageSourceStore
         new PageSourceProvider<ObservableValidator1Page>(),
         new PageSourceProvider<ObservableRecipient1Page>(),
         new PageSourceProvider<RelayCommand1Page>(),
+        new PageSourceProvider<RelayCommand2Page>(),
+        new PageSourceProvider<INotifyPropertyChanged1Page>(),
         
     };
 }

@@ -20,6 +20,7 @@ internal sealed partial class ObservableValidator1ViewModel : ObservableValidato
     [NotifyDataErrorInfo]
     [Required(ErrorMessage = "3 or more is required")]
     [MinLength(3)]  // 2 or less is not allowed
+    [MaxLength(6)]
     private string _name = "";
 
     [ObservableProperty]
