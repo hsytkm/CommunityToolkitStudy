@@ -1,10 +1,9 @@
 ﻿<controls:MyPageControlBase
-    x:Class="CommunityToolkitStudy.Wpf.Views.Observables.ObservableRecipient1Page"
+    x:Class="CommunityToolkitStudy.Wpf.Views.Mvvm.ComponentModel.ObservableRecipient1Page"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:CommunityToolkitStudy.Wpf.Views.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:CommunityToolkitStudy.Wpf.Views.Observables"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:system="clr-namespace:System;assembly=System.Runtime"
     d:DesignHeight="450"

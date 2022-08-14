@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using CommunityToolkitStudy.Wpf.Views.Controls;
 
-namespace CommunityToolkitStudy.Wpf.Views.Observables;
+namespace CommunityToolkitStudy.Wpf.Views.Mvvm.ComponentModel;
 
 // https://docs.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/generators/observableproperty
 public sealed partial class ObservableProperty1Page : MyPageControlBase

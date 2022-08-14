@@ -1,10 +1,9 @@
 ﻿<controls:MyPageControlBase
-    x:Class="CommunityToolkitStudy.Wpf.Views.Observables.ObservableProperty1Page"
+    x:Class="CommunityToolkitStudy.Wpf.Views.Mvvm.ComponentModel.INotifyPropertyChanged1Page"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:CommunityToolkitStudy.Wpf.Views.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:CommunityToolkitStudy.Wpf.Views.Observables"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:system="clr-namespace:System;assembly=System.Runtime"
     d:DesignHeight="450"
@@ -12,7 +11,7 @@
     mc:Ignorable="d">
 
     <controls:MyPageControlBase.Subtitle>
-        監視可能プロパティ
+        基底クラスの生成
     </controls:MyPageControlBase.Subtitle>
 
     <controls:MyPageControlBase.Description>
@@ -22,8 +21,8 @@
     <controls:MyPageControlBase.Keywords>
         <x:Array Type="{x:Type system:String}">
             <system:String>SourceGenerator</system:String>
-            <system:String>OnPropertyChanging()</system:String>
-            <system:String>OnPropertyChanged()</system:String>
+            <system:String>INotifyPropertyChanged</system:String>
+            <system:String>ObservableObject</system:String>
         </x:Array>
     </controls:MyPageControlBase.Keywords>
 

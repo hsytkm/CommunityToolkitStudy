@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using CommunityToolkitStudy.Wpf.Views.Controls;
 
-namespace CommunityToolkitStudy.Wpf.Views.Observables;
+namespace CommunityToolkitStudy.Wpf.Views.Mvvm.ComponentModel;
 
 // https://docs.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/generators/observableproperty#requesting-property-validationpublic
 public sealed partial class ObservableValidator1Page : MyPageControlBase

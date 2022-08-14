@@ -2,20 +2,20 @@
 using System.Threading.Tasks;
 using CommunityToolkitStudy.Wpf.Views.Controls;
 
-namespace CommunityToolkitStudy.Wpf.Views.Observables;
+namespace CommunityToolkitStudy.Wpf.Views.Mvvm.Input;
 
 // [RelayCommand 属性 - .NET Community Toolkit | Microsoft Docs](https://docs.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/generators/relaycommand)
 // https://docs.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/generators/observableproperty#notifying-dependent-commands
-public sealed partial class RelayCommand2Page : MyPageControlBase
+public sealed partial class AsyncRelayCommand1Page : MyPageControlBase
 {
-    public RelayCommand2Page()
+    public AsyncRelayCommand1Page()
     {
-        DataContext = new RelayCommand2ViewModel();
+        DataContext = new AsyncRelayCommand1ViewModel();
         InitializeComponent();
     }
 }
 
-internal sealed partial class RelayCommand2ViewModel : ObservableObject
+internal sealed partial class AsyncRelayCommand1ViewModel : ObservableObject
 {
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(Answer))]

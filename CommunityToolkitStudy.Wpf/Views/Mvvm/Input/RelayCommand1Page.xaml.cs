@@ -1,6 +1,6 @@
 ﻿using CommunityToolkitStudy.Wpf.Views.Controls;
 
-namespace CommunityToolkitStudy.Wpf.Views.Observables;
+namespace CommunityToolkitStudy.Wpf.Views.Mvvm.Input;
 
 // [RelayCommand 属性 - .NET Community Toolkit | Microsoft Docs](https://docs.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/generators/relaycommand)
 // https://docs.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/generators/observableproperty#notifying-dependent-commands

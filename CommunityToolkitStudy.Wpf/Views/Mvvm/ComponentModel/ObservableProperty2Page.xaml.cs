@@ -1,6 +1,6 @@
 ﻿using CommunityToolkitStudy.Wpf.Views.Controls;
 
-namespace CommunityToolkitStudy.Wpf.Views.Observables;
+namespace CommunityToolkitStudy.Wpf.Views.Mvvm.ComponentModel;
 
 // https://docs.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/generators/observableproperty#notifying-dependent-properties
 public sealed partial class ObservableProperty2Page : MyPageControlBase
