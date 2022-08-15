@@ -9,27 +9,19 @@ namespace CommunityToolkitStudy.Wpf;
 
 public sealed partial class App : Application
 {
-    public static T GetService<T>() where T : class
-    {
-        if (_services.GetService(typeof(T)) is not T service)
-            throw new ArgumentException($"{typeof(T)} needs to be registered in ConfigureServices within App.xaml.cs.");
-        return service;
-    }
+    public static new App Current => (App)Application.Current;
+    readonly MyServiceProvider _serviceProvider;
 
-    public static object GetViewModel<T>() where T : class
+    public App()
     {
-        if (_services.GetViewModel<T>() is not { } viewModel)
-            throw new ArgumentException($"{typeof(T)} needs to be registered in ConfigureServices within App.xaml.cs.");
-        return viewModel;
+        _serviceProvider = ConfigureServices();
+        Ioc.Default.ConfigureServices(_serviceProvider);
     }
-
-    static readonly MyServiceProvider _services = ConfigureServices();
 
     static MyServiceProvider ConfigureServices()
     {
         var services = new MyServiceProviderSource();
 
-        //services.AddSingleton<ModelMain>();
         services.AddTransient<DependencyInjection1ViewModel>();
         services.AddSingleton<DependencyInjection1Model>();
 
@@ -37,6 +29,13 @@ public sealed partial class App : Application
         services.AddViewModel<PagesListBoxPage, PagesListBoxViewModel>();
 
         return services.BuildServiceProvider();
+    }
+
+    public object GetViewModel<T>() where T : FrameworkElement
+    {
+        if (_serviceProvider.GetViewModel<T>() is not { } viewModel)
+            throw new ArgumentException($"{typeof(T)} needs to be registered in ConfigureServices within App.xaml.cs.");
+        return viewModel;
     }
 
     private void Application_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)

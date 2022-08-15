@@ -44,7 +44,7 @@ internal sealed partial class ObservableRecipient1_SenderViewModel : ObservableR
 internal sealed /*partial*/ class ObservableRecipient1_Recipient1ViewModel : ObservableRecipient
 {
     public string Name { get; } = "Recipient1";
-    public ObservableCollection<string> Messages { get; } = new();
+    public ObservableCollection<string> Texts { get; } = new();
 
     public ObservableRecipient1_Recipient1ViewModel() => IsActive = true;
 
@@ -58,7 +58,7 @@ internal sealed /*partial*/ class ObservableRecipient1_Recipient1ViewModel : Obs
                 nameof(ObservableRecipient1_SenderViewModel.Text1) => $"{m.PropertyName} : {m.OldValue} -> {m.NewValue}",
                 _ => $"{m.PropertyName} : Ignored"
             };
-            Messages.Add(message);
+            Texts.Add(message);
         });
     }
 }
@@ -69,11 +69,11 @@ internal sealed /*partial*/ class ObservableRecipient1_Recipient2ViewModel
     : ObservableRecipient, IRecipient<PropertyChangedMessage<string>>
 {
     public string Name { get; } = "Recipient2";
-    public ObservableCollection<string> Messages { get; } = new();
+    public ObservableCollection<string> Texts { get; } = new();
 
     public ObservableRecipient1_Recipient2ViewModel() => IsActive = false;
 
     // register automatically
     public void Receive(PropertyChangedMessage<string> message) =>
-        Messages.Add($"{message.PropertyName} : {message.OldValue} -> {message.NewValue}");
+        Texts.Add($"{message.PropertyName} : {message.OldValue} -> {message.NewValue}");
 }

@@ -1,10 +1,11 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Windows;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CommunityToolkitStudy.Wpf.Services;
 
 public interface IViewModelProvider
 {
-    object? GetViewModel<TView>();
+    object? GetViewModel<TView>() where TView : FrameworkElement;
 }
 
 internal sealed class MyServiceProviderSource
@@ -17,6 +18,7 @@ internal sealed class MyServiceProviderSource
     internal void AddTransient<T>() where T : class => _services.AddTransient<T>();
 
     internal void AddViewModel<TView, TViewModel>()
+        where TView : FrameworkElement
         where TViewModel : class
     {
         AddTransient<TViewModel>();
@@ -44,9 +46,10 @@ internal sealed class MyServiceProvider : IServiceProvider, IViewModelProvider
     public object? GetService(Type serviceType) => _provider.GetService(serviceType);
 
     public object? GetViewModel<TView>()
+        where TView : FrameworkElement
     {
         if (_viewToViewModelDict.TryGetValue(typeof(TView), out var vmType))
-            return _provider.GetService(vmType);
+            return GetService(vmType);
 
         throw new KeyNotFoundException($"View Type is {typeof(TView).FullName}.");
     }

@@ -2,6 +2,7 @@
 using CommunityToolkitStudy.Wpf.Views.Mvvm.ComponentModel;
 using CommunityToolkitStudy.Wpf.Views.Mvvm.DependencyInjection;
 using CommunityToolkitStudy.Wpf.Views.Mvvm.Input;
+using CommunityToolkitStudy.Wpf.Views.Mvvm.Messaging;
 
 namespace CommunityToolkitStudy.Wpf.Views;
 
@@ -9,7 +10,7 @@ internal static class PageSourceStore
 {
     internal static IReadOnlyList<IPageSourceProvider> All { get; } = new IPageSourceProvider[]
     {
-        new PageSourceProvider<DependencyInjection1Page>(),
+        //new PageSourceProvider<IMessenger1Page>(),
 
         // Mvvm.ComponentModel
         new PageSourceProvider<INotifyPropertyChanged1Page>(),
@@ -24,6 +25,10 @@ internal static class PageSourceStore
         // Mvvm.Input
         new PageSourceProvider<RelayCommand1Page>(),
         new PageSourceProvider<AsyncRelayCommand1Page>(),
+
+        // Mvvm.Messaging
+        //new PageSourceProvider<IMessenger1Page>(),
+
 
     };
 }

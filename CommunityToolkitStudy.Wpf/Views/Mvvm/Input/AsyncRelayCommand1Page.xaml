@@ -44,10 +44,14 @@
         <TextBlock
             HorizontalAlignment="Center"
             FontSize="{StaticResource FontSizeMiddle}"
+            Text="{Binding CountUp1Command.ExecutionTask.Status}" />
+        <TextBlock
+            HorizontalAlignment="Center"
+            FontSize="{StaticResource FontSizeMiddle}"
             Text="{Binding Value1, StringFormat='Value1 = {0}'}" />
 
         <!--  Value2  -->
-        <UniformGrid Margin="0,30,0,0" Columns="2">
+        <UniformGrid Margin="0,20,0,0" Columns="2">
             <Button
                 Height="30"
                 Command="{Binding CountUp2Command}"
@@ -61,11 +65,15 @@
         <TextBlock
             HorizontalAlignment="Center"
             FontSize="{StaticResource FontSizeMiddle}"
+            Text="{Binding CountUp2Command.ExecutionTask.Status}" />
+        <TextBlock
+            HorizontalAlignment="Center"
+            FontSize="{StaticResource FontSizeMiddle}"
             Text="{Binding Value2, StringFormat='Value2 = {0}'}" />
 
         <!--  Value3  -->
         <TextBlock
-            Margin="0,30,0,0"
+            Margin="0,20,0,0"
             HorizontalAlignment="Center"
             FontSize="{StaticResource FontSizeMiddle}"
             Text="any number of concurrent invocations can be queued." />
@@ -74,6 +82,10 @@
             Command="{Binding CountUp3Command}"
             CommandParameter="{StaticResource Int3}"
             Content="Value3 += 3" />
+        <TextBlock
+            HorizontalAlignment="Center"
+            FontSize="{StaticResource FontSizeMiddle}"
+            Text="{Binding CountUp3Command.ExecutionTask.Status}" />
         <TextBlock
             HorizontalAlignment="Center"
             FontSize="{StaticResource FontSizeMiddle}"

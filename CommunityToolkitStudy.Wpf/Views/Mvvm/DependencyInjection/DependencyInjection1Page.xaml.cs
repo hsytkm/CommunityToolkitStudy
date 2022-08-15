@@ -11,7 +11,7 @@ public sealed partial class DependencyInjection1Page : MyPageControlBase
         //  Prism の ViewModelLocator (勝手に解決) に該当する機能はないようです。
         //  ViewModelLocator の実装を見たところ、アセンブリをリフレクションで動的に解決してそうだったので、
         //  処理不可の観点から推奨してないのかなぁと思いました。（妄想記事です）
-        DataContext = App.GetService<DependencyInjection1ViewModel>();
+        DataContext = Ioc.Default.GetService<DependencyInjection1ViewModel>();
         InitializeComponent();
     }
 }
