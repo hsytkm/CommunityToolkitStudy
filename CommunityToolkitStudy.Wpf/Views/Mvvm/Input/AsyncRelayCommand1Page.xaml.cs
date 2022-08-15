@@ -1,6 +1,4 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using CommunityToolkitStudy.Wpf.Views.Controls;
+﻿using CommunityToolkitStudy.Wpf.Views.Controls;
 
 namespace CommunityToolkitStudy.Wpf.Views.Mvvm.Input;
 

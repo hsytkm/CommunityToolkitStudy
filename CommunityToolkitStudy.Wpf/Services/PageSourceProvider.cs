@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using CommunityToolkitStudy.Wpf.Views.Controls;
+﻿using CommunityToolkitStudy.Wpf.Views.Controls;
 
 namespace CommunityToolkitStudy.Wpf.Services;
 

@@ -1,9 +1,9 @@
 ﻿using System.Windows;
+using System.Windows.Threading;
+using CommunityToolkitStudy.Wpf.Services;
 using CommunityToolkitStudy.Wpf.ViewModels;
 using CommunityToolkitStudy.Wpf.Views;
-using CommunityToolkitStudy.Wpf.Services;
-using System.Windows.Threading;
-using System;
+using CommunityToolkitStudy.Wpf.Views.Mvvm.DependencyInjection;
 
 namespace CommunityToolkitStudy.Wpf;
 
@@ -30,10 +30,12 @@ public sealed partial class App : Application
         var services = new MyServiceProviderSource();
 
         //services.AddSingleton<ModelMain>();
+        services.AddTransient<DependencyInjection1ViewModel>();
+        services.AddSingleton<DependencyInjection1Model>();
 
         // Views and ViewModels
         services.AddViewModel<PagesListBoxPage, PagesListBoxViewModel>();
-        
+
         return services.BuildServiceProvider();
     }
 
