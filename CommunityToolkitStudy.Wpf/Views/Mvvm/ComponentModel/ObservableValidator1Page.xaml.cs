@@ -21,14 +21,14 @@ internal sealed partial class ObservableValidator1ViewModel : ObservableValidato
     [Required(ErrorMessage = "3 or more is required")]
     [MinLength(3)]  // 2 or less is not allowed
     [MaxLength(6)]
-    private string _name = "";
+    string _name = "";
 
     [ObservableProperty]
     [NotifyDataErrorInfo]
     [Required(ErrorMessage = "Number is required")]
     [RegularExpression("[0-9]+$", ErrorMessage = "0 ~ 100 is required")]
     [Range(0, 100)]
-    private int _age;
+    int _age;
 
     public string Message { get; } = "ReactiveProperty is recommended!  Error がない場合のみ値を通知できて便利です。";
 }

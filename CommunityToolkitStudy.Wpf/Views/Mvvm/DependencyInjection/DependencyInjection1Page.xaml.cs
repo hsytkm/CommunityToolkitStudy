@@ -16,23 +16,23 @@ public sealed partial class DependencyInjection1Page : MyPageControlBase
     }
 }
 
-internal sealed partial class DependencyInjection1ViewModel : ObservableObject
+internal sealed partial class DependencyInjection1ViewModel : ObservableRecipient
 {
     readonly DependencyInjection1Model _model;
 
     // ViewModel の値はページ遷移で引き継がれません。
     [ObservableProperty]
-    private int _viewModelValue;
+    int _viewModelValue;
 
     [RelayCommand]
-    private void AddViewModelValue() => ViewModelValue++;
+    void AddViewModelValue() => ViewModelValue++;
 
     // Model の値はページ遷移後も引き継がれます。
     [ObservableProperty]
-    private int _modelValue;
+    int _modelValue;
 
     [RelayCommand]
-    private void AddModelValue() => _model.CountUp();
+    void AddModelValue() => _model.CountUp();
 
     // コンストラクタで Model をインジェクションします
     public DependencyInjection1ViewModel(DependencyInjection1Model model)
@@ -40,10 +40,14 @@ internal sealed partial class DependencyInjection1ViewModel : ObservableObject
         _model = model;
         ModelValue = model.Counter;     // Modelの値復帰(ダサい)
 
-        model.PropertyChanged += Model_PropertyChanged;
+#if false   // CommunityToolkit を使用しない実装
+        model.PropertyChanged += Model_PropertyChanged;     // 解除を実装していません
+#else
+        IsActive = true;
+#endif
     }
 
-    // CommunityToolkit でもこの実装しかない？
+#if false   // CommunityToolkit を使用しない実装
     private void Model_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
     {
         if (sender is not DependencyInjection1Model model)
@@ -56,12 +60,33 @@ internal sealed partial class DependencyInjection1ViewModel : ObservableObject
                 break;
         }
     }
+#else
+    // register myself
+    protected override void OnActivated()
+    {
+        // 解除を実装していません
+        Messenger.Register<DependencyInjection1ViewModel, PropertyChangedMessage<int>>(this, static (r, m) =>
+        {
+            switch (m.PropertyName)
+            {
+                case nameof(DependencyInjection1Model.Counter):
+                    r.ModelValue = m.NewValue;
+                    break;
+            };
+        });
+    }
+#endif
 }
 
-internal sealed partial class DependencyInjection1Model : ObservableObject
+internal sealed partial class DependencyInjection1Model : ObservableRecipient
 {
     [ObservableProperty]
-    private int _counter;
+#if false   // CommunityToolkit を使用しない実装
+    // nothing
+#else
+    [NotifyPropertyChangedRecipients]
+#endif
+    int _counter;
 
     internal void CountUp() => Counter++;
 }

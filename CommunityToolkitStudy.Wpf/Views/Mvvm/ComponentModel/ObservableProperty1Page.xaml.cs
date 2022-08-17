@@ -17,19 +17,19 @@ public sealed partial class ObservableProperty1Page : MyPageControlBase
 internal sealed partial class ObserveProperty1ViewModel : ObservableObject
 {
     [ObservableProperty]    // "Name" property is generated in the partial class.
-    private string _name = "abc";
+    string _name = "abc";
 
-    public ObservableCollection<string> Messages { get; } = new();
+    public ObservableCollection<string> Texts { get; } = new();
 
     // Called before value is set.
     partial void OnNameChanging(string value)   // Argument name is "value"
     {
-        Messages.Add($"{nameof(OnNameChanging)}({value})");
+        Texts.Add($"{nameof(OnNameChanging)}({value})");
     }
 
     // Called after value is set.
     partial void OnNameChanged(string value)   // Argument name is "value"
     {
-        Messages.Add($"{nameof(OnNameChanged)}({value})");
+        Texts.Add($"{nameof(OnNameChanged)}({value})");
     }
 }

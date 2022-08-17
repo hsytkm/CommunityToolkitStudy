@@ -30,7 +30,7 @@ internal sealed partial class AsyncRelayCommand1ViewModel : ObservableObject
 
     // generate CountUp1Command
     [RelayCommand]  // IAsyncRelayCommand
-    private async Task CountUp1Async()  // ValueTask は使用できません
+    async Task CountUp1Async()  // ValueTask は使用できません
     {
         // https://docs.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/generators/relaycommand#asynchronous-commands
         await Task.Delay(500);
@@ -39,7 +39,7 @@ internal sealed partial class AsyncRelayCommand1ViewModel : ObservableObject
 
     // generate CountUp2Command and CountUp2CancelCommand
     [RelayCommand(CanExecute = nameof(CanCountUp2), IncludeCancelCommand = true)]    // IAsyncRelayCommand<int>
-    private async Task CountUp2Async(int value, CancellationToken token)
+    async Task CountUp2Async(int value, CancellationToken token)
     {
         // https://docs.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/generators/relaycommand#cancel-commands-for-asynchronous-operations
         // (IncludeCancelCommand = true) を付けると、XXXCancelCommand が生成されます。
@@ -51,11 +51,11 @@ internal sealed partial class AsyncRelayCommand1ViewModel : ObservableObject
         }
         catch (TaskCanceledException) { }
     }
-    private bool CanCountUp2() => (Value1 & 1) == 1;  // odd only
+    bool CanCountUp2() => (Value1 & 1) == 1;  // odd only
 
     // generate CountUp3Command
     [RelayCommand(AllowConcurrentExecutions = true)]
-    private async Task CountUp3Async(int value)
+    async Task CountUp3Async(int value)
     {
         // https://docs.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/generators/relaycommand#handling-concurrent-executions
         // (AllowConcurrentExecutions = true) を付けると、

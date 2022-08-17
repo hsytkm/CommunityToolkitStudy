@@ -30,7 +30,7 @@
     <StackPanel Margin="10">
         <ContentControl Content="{Binding HeaderPanel, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:MyPageControlBase}}}" />
 
-        <TextBlock FontSize="{StaticResource FontSizeMiddle}" Text="Name (Length=3 ~)" />
+        <TextBlock FontSize="{StaticResource FontSizeMiddle}" Text="Name (Length=3 ~)  Not checked at by initialized..." />
         <TextBox Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding (Validation.Errors)/ErrorContent, RelativeSource={RelativeSource Self}}" />
 
         <TextBlock FontSize="{StaticResource FontSizeMiddle}" Text="Age (0 ~ 100)" />

@@ -23,9 +23,9 @@ public sealed partial class IMessenger2Page : MyPageControlBase
 
 internal sealed partial class IMessenger2ViewModel : ObservableObject, IDisposable
 {
-    private sealed class CurrentTime2RequestMessage : RequestMessage<TimeOnly> { }
+    sealed class CurrentTime2RequestMessage : RequestMessage<TimeOnly> { }
 
-    private sealed /*partial*/ class TimePublisher2ViewModel : ObservableRecipient, IDisposable
+    sealed /*partial*/ class TimePublisher2ViewModel : ObservableRecipient, IDisposable
     {
         public TimePublisher2ViewModel() => IsActive = true;
 
@@ -34,14 +34,14 @@ internal sealed partial class IMessenger2ViewModel : ObservableObject, IDisposab
         {
             // Token(channel) を指定した登録
             Messenger.Register<CurrentTime2RequestMessage, TimeZoneId>(this, TimeZoneId.Utc,
-                (r, m) =>   // may be r=receiver, m=message
+                static (r, m) =>   // may be r=receiver, m=message
                 {
                     var timeNow = TimeOnly.FromDateTime(DateTime.UtcNow);
                     m.Reply(timeNow);
                 });
 
             Messenger.Register<CurrentTime2RequestMessage, TimeZoneId>(this, TimeZoneId.Local,
-                (r, m) =>   // may be r=receiver, m=message
+                static (r, m) =>   // may be r=receiver, m=message
                 {
                     var timeNow = TimeOnly.FromDateTime(DateTime.Now);
                     m.Reply(timeNow);
@@ -63,12 +63,12 @@ internal sealed partial class IMessenger2ViewModel : ObservableObject, IDisposab
     }
 
     // VMを直接参照しません。(メッセージで応答してもらいます)
-    private readonly TimePublisher2ViewModel _clockViewModel = new();
+    readonly TimePublisher2ViewModel _clockViewModel = new();
 
     [ObservableProperty]
-    private string _currentTime = "";
+    string _currentTime = "";
 
-    private void RequestCurrentTime(TimeZoneId timeZone)
+    void RequestCurrentTime(TimeZoneId timeZone)
     {
         // 宛先不明でメッセージを投げて返答(現在時刻)を取得します
         // Token(channel) を指定して発信します
@@ -77,13 +77,13 @@ internal sealed partial class IMessenger2ViewModel : ObservableObject, IDisposab
     }
 
     [RelayCommand]
-    public void RequestCurrentUtcTime() => RequestCurrentTime(TimeZoneId.Utc);  // Token指定あり
+    void RequestCurrentUtcTime() => RequestCurrentTime(TimeZoneId.Utc);  // Token指定あり
 
     [RelayCommand]
-    public void RequestCurrentLocalTime() => RequestCurrentTime(TimeZoneId.Local);  // Token指定あり
+    void RequestCurrentLocalTime() => RequestCurrentTime(TimeZoneId.Local);  // Token指定あり
 
     [RelayCommand]
-    public void ClearTime() => CurrentTime = "";
+    void ClearTime() => CurrentTime = "";
 
     public void Dispose() => _clockViewModel.Dispose();
 }

@@ -51,14 +51,14 @@ internal sealed /*partial*/ class ObservableRecipient1_Recipient1ViewModel : Obs
     // register myself
     protected override void OnActivated()
     {
-        Messenger.Register<ObservableRecipient1_Recipient1ViewModel, PropertyChangedMessage<string>>(this, (r, m) =>
+        Messenger.Register<ObservableRecipient1_Recipient1ViewModel, PropertyChangedMessage<string>>(this, static (r, m) =>
         {
             var message = m.PropertyName switch
             {
                 nameof(ObservableRecipient1_SenderViewModel.Text1) => $"{m.PropertyName} : {m.OldValue} -> {m.NewValue}",
                 _ => $"{m.PropertyName} : Ignored"
             };
-            Texts.Add(message);
+            r.Texts.Add(message);
         });
     }
 }

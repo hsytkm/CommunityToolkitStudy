@@ -17,10 +17,10 @@ internal sealed partial class ObserveProperty2ViewModel : ObservableObject
 {
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(Answer))]
-    private int _value1;
+    int _value1;
 
     [RelayCommand]
-    private void CountUp1() => Value1++;
+    void CountUp1() => Value1++;
 
     public int Answer => Value1 * 3;
 }

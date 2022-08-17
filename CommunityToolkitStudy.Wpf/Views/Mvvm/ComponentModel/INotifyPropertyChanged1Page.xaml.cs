@@ -24,7 +24,7 @@ internal abstract class MyClassBase
 internal sealed partial class INotifyPropertyChanged1ViewModel : MyClassBase
 {
     [ObservableProperty]
-    private string _name = "abc";
+    string _name = "abc";
 
     public ObservableCollection<string> Messages { get; } = new();
 

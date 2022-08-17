@@ -25,7 +25,7 @@ internal sealed partial class IMessenger1ViewModel : ObservableObject, IDisposab
         protected override void OnActivated()
         {
             Messenger.Register<CurrentTime1RequestMessage>(this,
-                (r, m) =>   // may be r=receiver, m=message
+                static (r, m) =>   // may be r=receiver, m=message
                 {
                     var timeNow = TimeOnly.FromDateTime(DateTime.Now);
                     m.Reply(timeNow);
@@ -57,7 +57,7 @@ internal sealed partial class IMessenger1ViewModel : ObservableObject, IDisposab
     }
 
     [RelayCommand]
-    public void ClearTime() => CurrentTime = "";
+    void ClearTime() => CurrentTime = "";
 
     public void Dispose() => _clockViewModel.Dispose();
 }
