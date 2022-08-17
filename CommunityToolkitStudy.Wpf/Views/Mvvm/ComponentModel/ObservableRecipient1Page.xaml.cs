@@ -28,7 +28,7 @@ internal sealed partial class ObservableRecipient1ViewModel : ObservableObject
 // 受信側は 型 と プロパティ名 でメッセージを処理しますので、実際の環境では 専用クラス をSendしないと扱い難いと思います。
 internal sealed partial class ObservableRecipient1_SenderViewModel : ObservableRecipient
 {
-    public string Name { get; } = "Messenger";
+    public string Name { get; } = "Sender";
 
     [ObservableProperty]
     [NotifyPropertyChangedRecipients]   // Message.Send<PropertyChangedMessage<T>>(message)
@@ -43,7 +43,7 @@ internal sealed partial class ObservableRecipient1_SenderViewModel : ObservableR
 // IRecipient<T> を実装しない場合、OnActivated() にて自分でメッセージを処理する必要があります。
 internal sealed /*partial*/ class ObservableRecipient1_Recipient1ViewModel : ObservableRecipient
 {
-    public string Name { get; } = "Recipient1";
+    public string Name { get; } = "Receiver1";
     public ObservableCollection<string> Texts { get; } = new();
 
     public ObservableRecipient1_Recipient1ViewModel() => IsActive = true;
@@ -68,7 +68,7 @@ internal sealed /*partial*/ class ObservableRecipient1_Recipient1ViewModel : Obs
 internal sealed /*partial*/ class ObservableRecipient1_Recipient2ViewModel
     : ObservableRecipient, IRecipient<PropertyChangedMessage<string>>
 {
-    public string Name { get; } = "Recipient2";
+    public string Name { get; } = "Receiver2";
     public ObservableCollection<string> Texts { get; } = new();
 
     public ObservableRecipient1_Recipient2ViewModel() => IsActive = false;

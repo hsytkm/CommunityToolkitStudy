@@ -10,7 +10,7 @@ internal static class PageSourceStore
 {
     internal static IReadOnlyList<IPageSourceProvider> All { get; } = new IPageSourceProvider[]
     {
-        //new PageSourceProvider<IMessenger1Page>(),
+        //new PageSourceProvider<IMessenger2Page>(),
 
         // Mvvm.ComponentModel
         new PageSourceProvider<INotifyPropertyChanged1Page>(),
@@ -27,7 +27,8 @@ internal static class PageSourceStore
         new PageSourceProvider<AsyncRelayCommand1Page>(),
 
         // Mvvm.Messaging
-        //new PageSourceProvider<IMessenger1Page>(),
+        new PageSourceProvider<IMessenger1Page>(),
+        new PageSourceProvider<IMessenger2Page>(),
 
 
     };

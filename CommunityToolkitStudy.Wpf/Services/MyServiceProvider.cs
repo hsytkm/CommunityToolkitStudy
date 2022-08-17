@@ -10,24 +10,20 @@ public interface IViewModelProvider
 
 internal sealed class MyServiceProviderSource
 {
-    readonly IServiceCollection _services = new ServiceCollection();
+    public ServiceCollection Services { get; } = new();
     readonly Dictionary<Type, Type> _viewToViewModelBindDict = new();
-
-    internal void AddSingleton<T>() where T : class => _services.AddSingleton<T>();
-
-    internal void AddTransient<T>() where T : class => _services.AddTransient<T>();
 
     internal void AddViewModel<TView, TViewModel>()
         where TView : FrameworkElement
         where TViewModel : class
     {
-        AddTransient<TViewModel>();
+        Services.AddTransient<TViewModel>();
         _viewToViewModelBindDict.Add(typeof(TView), typeof(TViewModel));
     }
 
     internal MyServiceProvider BuildServiceProvider()
     {
-        var provider = _services.BuildServiceProvider();
+        var provider = Services.BuildServiceProvider();
         return new(provider, _viewToViewModelBindDict);
     }
 }

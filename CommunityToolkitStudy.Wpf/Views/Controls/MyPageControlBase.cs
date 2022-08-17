@@ -5,7 +5,7 @@ using System.Windows.Navigation;
 
 namespace CommunityToolkitStudy.Wpf.Views.Controls;
 
-public abstract class MyPageControlBase : UserControl
+public abstract class MyPageControlBase : UserControl, IDisposable
 {
     public static readonly DependencyProperty TitleProperty =
         DependencyProperty.Register(nameof(Title), typeof(string), typeof(MyPageControlBase), new PropertyMetadata(""));
@@ -152,4 +152,5 @@ public abstract class MyPageControlBase : UserControl
         return grid;
     }
 
+    public void Dispose() => (DataContext as IDisposable)?.Dispose();
 }

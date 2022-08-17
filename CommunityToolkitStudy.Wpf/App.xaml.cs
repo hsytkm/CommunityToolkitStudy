@@ -4,6 +4,7 @@ using CommunityToolkitStudy.Wpf.Services;
 using CommunityToolkitStudy.Wpf.ViewModels;
 using CommunityToolkitStudy.Wpf.Views;
 using CommunityToolkitStudy.Wpf.Views.Mvvm.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CommunityToolkitStudy.Wpf;
 
@@ -20,15 +21,16 @@ public sealed partial class App : Application
 
     static MyServiceProvider ConfigureServices()
     {
-        var services = new MyServiceProviderSource();
+        var provider = new MyServiceProviderSource();
+        var services = provider.Services;
 
         services.AddTransient<DependencyInjection1ViewModel>();
         services.AddSingleton<DependencyInjection1Model>();
 
         // Views and ViewModels
-        services.AddViewModel<PagesListBoxPage, PagesListBoxViewModel>();
+        provider.AddViewModel<PagesListBoxPage, PagesListBoxViewModel>();
 
-        return services.BuildServiceProvider();
+        return provider.BuildServiceProvider();
     }
 
     public object GetViewModel<T>() where T : FrameworkElement

@@ -39,6 +39,8 @@ internal sealed class PageSourceProvider<T> : IPageSourceProvider
             _keys.Add(Subtitle);
             _keys.Add(Description);
             _keys.AddRange(Keywords);
+
+            control.Dispose();
         }
     }
 
