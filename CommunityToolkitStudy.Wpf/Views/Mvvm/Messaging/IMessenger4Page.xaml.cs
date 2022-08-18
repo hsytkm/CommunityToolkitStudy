@@ -3,39 +3,26 @@
 namespace CommunityToolkitStudy.Wpf.Views.Mvvm.Messaging;
 
 // [メッセンジャー - .NET Community Toolkit | Microsoft Docs](https://docs.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/messenger)
-public sealed partial class IMessenger3Page : MyPageControlBase
+public sealed partial class IMessenger4Page : MyPageControlBase
 {
-    public IMessenger3Page()
+    public IMessenger4Page()
     {
-        DataContext = new IMessenger3ViewModel();
+        DataContext = new IMessenger4ViewModel();
         InitializeComponent();
     }
 }
 
-internal sealed partial class IMessenger3ViewModel
+internal sealed partial class IMessenger4ViewModel
     : ObservableRecipient    // IsActive に必要です
+    , IRecipient<PropertyChangedMessage<TimeOnly>>      // IMessenger3Page からの変化点
 {
     // VMを直接参照しません
-    readonly IMessenger3Model _model = new();
+    readonly IMessenger4Model _model = new();
 
     [ObservableProperty]
     string _latestTime = "";
 
-    public IMessenger3ViewModel() => IsActive = true;
-
-    protected override void OnActivated()
-    {
-        // 3. 差出元は不明で(型とプロパティ名から判定で)メッセージを監視して値を取得します。疎結合
-        Messenger.Register<IMessenger3ViewModel, PropertyChangedMessage<TimeOnly>>(this, static (r, m) =>
-        {
-            switch (m.PropertyName)
-            {
-                case nameof(IMessenger3Model.UpdateTime):
-                    r.LatestTime = m.NewValue.ToString($"HH:mm:ss.fff");
-                    break;
-            };
-        });
-    }
+    public IMessenger4ViewModel() => IsActive = true;
 
     [RelayCommand]
     void RequestCurrentTime()
@@ -46,11 +33,17 @@ internal sealed partial class IMessenger3ViewModel
 
     [RelayCommand]
     void ClearTime() => LatestTime = "";
+
+    public void Receive(PropertyChangedMessage<TimeOnly> message)
+    {
+        // 3. 差出元は不明で(型とプロパティ名から判定で)メッセージを監視して値を取得します。疎結合
+        LatestTime = message.NewValue.ToString($"HH:mm:ss.fff");
+    }
 }
 
-internal sealed partial class IMessenger3Model : ObservableRecipient
+internal sealed partial class IMessenger4Model : ObservableRecipient
 {
-    public IMessenger3Model() => IsActive = true;
+    public IMessenger4Model() => IsActive = true;
 
     [ObservableProperty]
     [NotifyPropertyChangedRecipients]   // Message.Send<PropertyChangedMessage<T>>(message)
@@ -58,7 +51,7 @@ internal sealed partial class IMessenger3Model : ObservableRecipient
 
     protected override void OnActivated()
     {
-        Messenger.Register<IMessenger3Model, RequestLatestInfoUnitMessage>(this, static (r, m) =>
+        Messenger.Register<IMessenger4Model, RequestLatestInfoUnitMessage>(this, static (r, m) =>
         {
             // 2. 差出元は不明で(メッセージ型から判定で)メッセージが来たら、データ(現在時刻)を更新します。疎結合
             r.UpdateTime = TimeOnly.FromDateTime(DateTime.Now);

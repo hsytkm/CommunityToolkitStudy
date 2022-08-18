@@ -10,6 +10,15 @@ internal static class PageSourceStore
 {
     internal static IReadOnlyList<IPageSourceProvider> All { get; } = new IPageSourceProvider[]
     {
+        /* 
+         * AsyncRequestMessage<T>
+         * CollectionRequestMessage<T>
+         * AsyncCollectionRequestMessage<T>
+         * ObservableGroup<TKey, TElement>
+         * ObservableGroupedCollection<TKey, TElement>
+         * ReadOnlyObservableGroup<TKey, TElement>
+         * ReadOnlyObservableGroupedCollection<TKey, TElement>
+         */
         //new PageSourceProvider<Page>(),
 
         // Mvvm.ComponentModel
@@ -30,6 +39,7 @@ internal static class PageSourceStore
         new PageSourceProvider<IMessenger1Page>(),
         new PageSourceProvider<IMessenger2Page>(),
         new PageSourceProvider<IMessenger3Page>(),
+        new PageSourceProvider<IMessenger4Page>(),
 
 
     };

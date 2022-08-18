@@ -31,11 +31,11 @@ internal sealed partial class ObservableRecipient1_SenderViewModel : ObservableR
     public string Name { get; } = "Sender";
 
     [ObservableProperty]
-    [NotifyPropertyChangedRecipients]   // Message.Send<PropertyChangedMessage<T>>(message)
+    [NotifyPropertyChangedRecipients]   // ObservableRecipient の継承が必要です
     private string _text1 = "text1";
 
     [ObservableProperty]
-    [NotifyPropertyChangedRecipients]
+    [NotifyPropertyChangedRecipients]   // Message.Send<PropertyChangedMessage<T>>(message)
     private string _text2 = "text2";
 }
 

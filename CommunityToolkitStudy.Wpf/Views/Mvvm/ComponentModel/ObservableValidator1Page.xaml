@@ -30,6 +30,16 @@
     <StackPanel Margin="10">
         <ContentControl Content="{Binding HeaderPanel, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:MyPageControlBase}}}" />
 
+        <StackPanel Margin="10">
+            <TextBlock FontSize="{StaticResource FontSizeMiddle}" Text="ObservableValidator: INotifyDataErrorInfo を実装した ObservableObject です。" />
+
+            <TextBlock Margin="5" FontSize="{StaticResource FontSizeSmall}">
+                Property: HasErrors<LineBreak />
+                Method: ClearErrors, GetErrors, TrySetProperty, ValidateAllProperties, ValidateProperty<LineBreak />
+                Event: ErrorsChanged<LineBreak />
+            </TextBlock>
+        </StackPanel>
+
         <TextBlock FontSize="{StaticResource FontSizeMiddle}" Text="Name (Length=3 ~)  Not checked at by initialized..." />
         <TextBox Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding (Validation.Errors)/ErrorContent, RelativeSource={RelativeSource Self}}" />
 

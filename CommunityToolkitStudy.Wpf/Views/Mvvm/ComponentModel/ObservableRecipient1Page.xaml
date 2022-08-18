@@ -39,6 +39,15 @@
     <DockPanel Margin="10">
         <ContentControl Content="{Binding HeaderPanel, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:MyPageControlBase}}}" DockPanel.Dock="Top" />
 
+        <StackPanel Margin="10" DockPanel.Dock="Top">
+            <TextBlock FontSize="{StaticResource FontSizeMiddle}" Text="ObservableRecipient: メッセージに対応した ObservableObject です。" />
+
+            <TextBlock Margin="5" FontSize="{StaticResource FontSizeSmall}">
+                Property: IsActive, Messenger<LineBreak />
+                Method: Broadcast, OnActivated, OnDeactivated<LineBreak />
+            </TextBlock>
+        </StackPanel>
+
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
