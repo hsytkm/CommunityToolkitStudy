@@ -1,11 +1,10 @@
-﻿using CommunityToolkit.Mvvm.Messaging;
-using CommunityToolkitStudy.Wpf.Views.Controls;
-using static CommunityToolkitStudy.Wpf.Views.Mvvm.Messaging.IMessenger2Page;
+﻿using CommunityToolkitStudy.Wpf.Views.Controls;
+using static CommunityToolkitStudy.Wpf.Views.Mvvm.Messaging.RequestMessage2Page;
 
 namespace CommunityToolkitStudy.Wpf.Views.Mvvm.Messaging;
 
 // [メッセンジャー - .NET Community Toolkit | Microsoft Docs](https://docs.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/messenger)
-public sealed partial class IMessenger2Page : MyPageControlBase
+public sealed partial class RequestMessage2Page : MyPageControlBase
 {
     // Message の Token(channel) には IEquatable<T> が必要なので Enum は使用不可
     public readonly record struct TimeZoneId(int Id)
@@ -14,14 +13,14 @@ public sealed partial class IMessenger2Page : MyPageControlBase
         public static readonly TimeZoneId Local = new(1);
     }
 
-    public IMessenger2Page()
+    public RequestMessage2Page()
     {
-        DataContext = new IMessenger2ViewModel();
+        DataContext = new RequestMessage2ViewModel();
         InitializeComponent();
     }
 }
 
-internal sealed partial class IMessenger2ViewModel : ObservableObject, IDisposable
+internal sealed partial class RequestMessage2ViewModel : ObservableObject, IDisposable
 {
     sealed class CurrentTime2RequestMessage : RequestMessage<TimeOnly> { }
 

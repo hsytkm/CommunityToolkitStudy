@@ -1,5 +1,5 @@
 ﻿<controls:MyPageControlBase
-    x:Class="CommunityToolkitStudy.Wpf.Views.Mvvm.Messaging.IMessenger1Page"
+    x:Class="CommunityToolkitStudy.Wpf.Views.Mvvm.Messaging.ValueChangedMessage1Page"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:CommunityToolkitStudy.Wpf.Views.Controls"
@@ -15,15 +15,14 @@
     </controls:MyPageControlBase.Subtitle>
 
     <controls:MyPageControlBase.Description>
-        RequestMessage&lt;T&gt; で値を取得します
+        ValueChangedMessage&lt;T&gt; を監視します
     </controls:MyPageControlBase.Description>
 
     <controls:MyPageControlBase.Keywords>
         <x:Array Type="{x:Type system:String}">
             <system:String>IMessenger</system:String>
             <system:String>WeakReferenceMessenger</system:String>
-            <system:String>RequestMessage&lt;T&gt;</system:String>
-            <system:String>MessageHandler&lt;TRecipient, TMessage&gt;</system:String>
+            <system:String>ValueChangedMessage&lt;T&gt;</system:String>
         </x:Array>
     </controls:MyPageControlBase.Keywords>
 
@@ -37,23 +36,25 @@
     <StackPanel Margin="10">
         <ContentControl Content="{Binding HeaderPanel, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:MyPageControlBase}}}" />
 
-        <TextBlock
-            Margin="0,10"
-            HorizontalAlignment="Left"
-            Text="宛先不明でメッセージを投げて返答(現在時刻)を取得します。" />
+        <TextBlock Margin="10" HorizontalAlignment="Left">
+            1. 宛先は不明で情報更新の要求メッセージ(専用型)を送出します。<LineBreak />
+            2. 差出元は不明で(メッセージ型から判定)メッセージが来たら、クリック数 を更新します。<LineBreak />
+        </TextBlock>
 
-        <Button
-            Margin="0,10"
-            Command="{Binding RequestCurrentTimeCommand}"
-            Content="Get current time" />
-        <Button
-            Margin="0,10"
-            Command="{Binding ClearTimeCommand}"
-            Content="Clear time" />
-        <TextBlock
-            Margin="0,10"
-            FontSize="{StaticResource FontSizeLarge}"
-            Text="{Binding CurrentTime}" />
+        <UniformGrid Columns="2">
+            <StackPanel Background="LightBlue">
+                <TextBlock Margin="10" Text="Sender" />
+                <Button
+                    Margin="10"
+                    Command="{Binding SenderViewModel.ClickCommand}"
+                    Content="Click me!" />
+            </StackPanel>
+
+            <StackPanel Background="LightPink">
+                <TextBlock Margin="10" Text="Receiver" />
+                <TextBlock Margin="10" Text="{Binding ReceiverViewModel.TextLog}" />
+            </StackPanel>
+        </UniformGrid>
 
     </StackPanel>
 </controls:MyPageControlBase>

@@ -1,5 +1,5 @@
 ﻿<controls:MyPageControlBase
-    x:Class="CommunityToolkitStudy.Wpf.Views.Mvvm.Messaging.IMessenger2Page"
+    x:Class="CommunityToolkitStudy.Wpf.Views.Mvvm.Messaging.RequestMessage2Page"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:CommunityToolkitStudy.Wpf.Views.Controls"
@@ -15,7 +15,7 @@
     </controls:MyPageControlBase.Subtitle>
 
     <controls:MyPageControlBase.Description>
-        RequestMessage&lt;T&gt; で値を送受信します
+        RequestMessage&lt;T&gt; でチャンネルごとの値を送受信します
     </controls:MyPageControlBase.Description>
 
     <controls:MyPageControlBase.Keywords>

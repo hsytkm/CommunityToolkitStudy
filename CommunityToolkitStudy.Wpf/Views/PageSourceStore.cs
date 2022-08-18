@@ -36,10 +36,11 @@ internal static class PageSourceStore
         new PageSourceProvider<AsyncRelayCommand1Page>(),
 
         // Mvvm.Messaging
-        new PageSourceProvider<IMessenger1Page>(),
-        new PageSourceProvider<IMessenger2Page>(),
-        new PageSourceProvider<IMessenger3Page>(),
-        new PageSourceProvider<IMessenger4Page>(),
+        new PageSourceProvider<RequestMessage1Page>(),
+        new PageSourceProvider<RequestMessage2Page>(),
+        new PageSourceProvider<ValueChangedMessage1Page>(),
+        new PageSourceProvider<PropertyChangedMessage1Page>(),
+        new PageSourceProvider<IRecipient1Page>(),
 
 
     };

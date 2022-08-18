@@ -3,16 +3,16 @@
 namespace CommunityToolkitStudy.Wpf.Views.Mvvm.Messaging;
 
 // [メッセンジャー - .NET Community Toolkit | Microsoft Docs](https://docs.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/messenger)
-public sealed partial class IMessenger1Page : MyPageControlBase
+public sealed partial class RequestMessage1Page : MyPageControlBase
 {
-    public IMessenger1Page()
+    public RequestMessage1Page()
     {
-        DataContext = new IMessenger1ViewModel();
+        DataContext = new RequestMessage1ViewModel();
         InitializeComponent();
     }
 }
 
-internal sealed partial class IMessenger1ViewModel : ObservableObject, IDisposable
+internal sealed partial class RequestMessage1ViewModel : ObservableObject, IDisposable
 {
     // 現在時刻を要求するメッセージです
     private sealed class CurrentTime1RequestMessage : RequestMessage<TimeOnly> { }

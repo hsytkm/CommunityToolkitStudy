@@ -67,12 +67,13 @@ internal sealed partial class DependencyInjection1ViewModel : ObservableRecipien
         // 解除を実装していません
         Messenger.Register<DependencyInjection1ViewModel, PropertyChangedMessage<int>>(this, static (r, m) =>
         {
+            // プロパティ名を参照すると密結合となってしまうので、理想的には通知専用型を用意するべきだと思います。
             switch (m.PropertyName)
             {
                 case nameof(DependencyInjection1Model.Counter):
                     r.ModelValue = m.NewValue;
                     break;
-            };
+            }
         });
     }
 #endif
