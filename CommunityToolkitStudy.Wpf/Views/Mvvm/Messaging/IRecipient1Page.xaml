@@ -22,8 +22,8 @@
         <x:Array Type="{x:Type system:String}">
             <system:String>IMessenger</system:String>
             <system:String>Register&lt;TMessage, TToken&gt;</system:String>
-            <system:String>PropertyChangedMessage&lt;T&gt;</system:String>
             <system:String>IRecipient&lt;T&gt;</system:String>
+            <system:String>RegisterAll()</system:String>
         </x:Array>
     </controls:MyPageControlBase.Keywords>
 

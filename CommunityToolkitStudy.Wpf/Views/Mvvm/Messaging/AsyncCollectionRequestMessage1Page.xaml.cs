@@ -3,6 +3,7 @@
 namespace CommunityToolkitStudy.Wpf.Views.Mvvm.Messaging;
 
 // [メッセンジャー - .NET Community Toolkit | Microsoft Docs](https://docs.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/messenger)
+// [AsyncCollectionRequestMessage<T> Class (Microsoft.Toolkit.Mvvm.Messaging.Messages) | Microsoft Docs](https://docs.microsoft.com/ja-jp/dotnet/api/microsoft.toolkit.mvvm.messaging.messages.asynccollectionrequestmessage-1)
 public sealed partial class AsyncCollectionRequestMessage1Page : MyPageControlBase
 {
     public AsyncCollectionRequestMessage1Page()

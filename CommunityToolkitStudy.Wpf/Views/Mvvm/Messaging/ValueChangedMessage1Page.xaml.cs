@@ -3,6 +3,7 @@
 namespace CommunityToolkitStudy.Wpf.Views.Mvvm.Messaging;
 
 // [メッセンジャー - .NET Community Toolkit | Microsoft Docs](https://docs.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/messenger)
+// [ValueChangedMessage<T> Class (Microsoft.Toolkit.Mvvm.Messaging.Messages) | Microsoft Docs](https://docs.microsoft.com/en-us/dotnet/api/microsoft.toolkit.mvvm.messaging.messages.valuechangedmessage-1)
 public sealed partial class ValueChangedMessage1Page : MyPageControlBase
 {
     public ValueChangedMessage1Page()

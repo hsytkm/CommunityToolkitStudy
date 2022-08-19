@@ -4,6 +4,7 @@ using static CommunityToolkitStudy.Wpf.Views.Mvvm.Messaging.RequestMessage2Page;
 namespace CommunityToolkitStudy.Wpf.Views.Mvvm.Messaging;
 
 // [メッセンジャー - .NET Community Toolkit | Microsoft Docs](https://docs.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/messenger)
+// [RequestMessage<T> Class (Microsoft.Toolkit.Mvvm.Messaging.Messages) | Microsoft Docs](https://docs.microsoft.com/en-us/dotnet/api/microsoft.toolkit.mvvm.messaging.messages.requestmessage-1)
 public sealed partial class RequestMessage2Page : MyPageControlBase
 {
     // Message の Token(channel) には IEquatable<T> が必要なので Enum は使用不可
@@ -32,19 +33,17 @@ internal sealed partial class RequestMessage2ViewModel : ObservableObject, IDisp
         protected override void OnActivated()
         {
             // Token(channel) を指定した登録
-            Messenger.Register<CurrentTime2RequestMessage, TimeZoneId>(this, TimeZoneId.Utc,
-                static (r, m) =>   // may be r=receiver, m=message
-                {
-                    var timeNow = TimeOnly.FromDateTime(DateTime.UtcNow);
-                    m.Reply(timeNow);
-                });
+            Messenger.Register<CurrentTime2RequestMessage, TimeZoneId>(this, TimeZoneId.Utc, static (r, m) =>
+            {
+                var timeNow = TimeOnly.FromDateTime(DateTime.UtcNow);
+                m.Reply(timeNow);
+            });
 
-            Messenger.Register<CurrentTime2RequestMessage, TimeZoneId>(this, TimeZoneId.Local,
-                static (r, m) =>   // may be r=receiver, m=message
-                {
-                    var timeNow = TimeOnly.FromDateTime(DateTime.Now);
-                    m.Reply(timeNow);
-                });
+            Messenger.Register<CurrentTime2RequestMessage, TimeZoneId>(this, TimeZoneId.Local, static (r, m) =>
+            {
+                var timeNow = TimeOnly.FromDateTime(DateTime.Now);
+                m.Reply(timeNow);
+            });
         }
 
 #if false   // WeakReferenceMessenger なので自分で解除しなくても良さげ。

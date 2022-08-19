@@ -8,16 +8,12 @@ namespace CommunityToolkitStudy.Wpf.Views;
 
 internal static class PageSourceStore
 {
+    // [Community Toolkits のドキュメント - .NET Community Toolkit | Microsoft Docs](https://docs.microsoft.com/ja-jp/dotnet/communitytoolkit/)
     internal static IReadOnlyList<IPageSourceProvider> All { get; } = new IPageSourceProvider[]
     {
-        /* 
-         * ObservableGroup<TKey, TElement>
-         * ObservableGroupedCollection<TKey, TElement>
-         * ReadOnlyObservableGroup<TKey, TElement>
-         * ReadOnlyObservableGroupedCollection<TKey, TElement>
-         * 
+        /*
          * WeakReferenceMessenger
-         * StrongReferenceMessenger
+         * StrongReferenceMessenger     手動での解除が必要ですが、メモリ使用量が少なくパフォーマンス良いです
          */
         //new PageSourceProvider<Page>(),
 
@@ -46,4 +42,20 @@ internal static class PageSourceStore
         new PageSourceProvider<AsyncCollectionRequestMessage1Page>(),
 
     };
+
+    // [Introduction to the High Performance package - Windows Community Toolkit | Microsoft Docs] (https://docs.microsoft.com/ja-jp/windows/communitytoolkit/high-performance/introduction)
+    // [Introduction to the Diagnostics package - Windows Community Toolkit | Microsoft Docs](https://docs.microsoft.com/ja-jp/windows/communitytoolkit/diagnostics/introduction)
+
+    /* 以下は UWP(XF?)コントロール用 っぽいです。
+     *  [Observable groups - Windows Community Toolkit | Microsoft Docs](https://docs.microsoft.com/ja-jp/windows/communitytoolkit/collections/observablegroups)
+     *  
+     *  - ObservableGroup<TKey, TElement>
+     *  - ObservableGroupedCollection<TKey, TElement>
+     *  - ReadOnlyObservableGroup<TKey, TElement>
+     *  - ReadOnlyObservableGroupedCollection<TKey, TElement>
+     *
+     *  WPF の CollectionViewSource と異なっており、使えなさげでした。
+     *    WPF: System.Windows.Data.CollectionViewSource
+     *    UWP: Windows.UI.Xaml.Data.CollectionViewSource
+     */
 }

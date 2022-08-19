@@ -48,6 +48,10 @@
         <TextBlock
             HorizontalAlignment="Center"
             FontSize="{StaticResource FontSizeMiddle}"
+            Text="{Binding CountUp1Command.IsRunning}" />
+        <TextBlock
+            HorizontalAlignment="Center"
+            FontSize="{StaticResource FontSizeMiddle}"
             Text="{Binding Value1, StringFormat='Value1 = {0}'}" />
 
         <!--  Value2  -->
@@ -69,6 +73,10 @@
         <TextBlock
             HorizontalAlignment="Center"
             FontSize="{StaticResource FontSizeMiddle}"
+            Text="{Binding CountUp2Command.IsRunning}" />
+        <TextBlock
+            HorizontalAlignment="Center"
+            FontSize="{StaticResource FontSizeMiddle}"
             Text="{Binding Value2, StringFormat='Value2 = {0}'}" />
 
         <!--  Value3  -->
@@ -86,6 +94,10 @@
             HorizontalAlignment="Center"
             FontSize="{StaticResource FontSizeMiddle}"
             Text="{Binding CountUp3Command.ExecutionTask.Status}" />
+        <TextBlock
+            HorizontalAlignment="Center"
+            FontSize="{StaticResource FontSizeMiddle}"
+            Text="{Binding CountUp3Command.IsRunning}" />
         <TextBlock
             HorizontalAlignment="Center"
             FontSize="{StaticResource FontSizeMiddle}"

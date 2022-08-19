@@ -3,6 +3,7 @@
 namespace CommunityToolkitStudy.Wpf.Views.Mvvm.Messaging;
 
 // [メッセンジャー - .NET Community Toolkit | Microsoft Docs](https://docs.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/messenger)
+// [AsyncRequestMessage<T> Class (Microsoft.Toolkit.Mvvm.Messaging.Messages) | Microsoft Docs](https://docs.microsoft.com/en-us/dotnet/api/microsoft.toolkit.mvvm.messaging.messages.asyncrequestmessage-1)
 public sealed partial class AsyncRequestMessage1Page : MyPageControlBase
 {
     public AsyncRequestMessage1Page()
@@ -24,18 +25,17 @@ internal sealed partial class AsyncRequestMessage1ViewModel : ObservableObject, 
         // called when IsActive changes to true.
         protected override void OnActivated()
         {
-            Messenger.Register<CurrentTime1AsyncRequestMessage>(this,
-                static (r, m) =>   // may be r=receiver, m=message
+            Messenger.Register<CurrentTime1AsyncRequestMessage>(this, static (r, m) =>
+            {
+                // 1. 結果を Task<T> で返します。
+                static async Task<TimeOnly> GetCurrentTimeAsync()
                 {
-                    // 1. 結果を Task<T> で返します。
-                    static async Task<TimeOnly> GetCurrentTimeAsync()
-                    {
-                        await Task.Delay(1000).ConfigureAwait(false);
-                        return TimeOnly.FromDateTime(DateTime.Now);
-                    }
-                    var task = GetCurrentTimeAsync();
-                    m.Reply(task);
-                });
+                    await Task.Delay(1000).ConfigureAwait(false);
+                    return TimeOnly.FromDateTime(DateTime.Now);
+                }
+                var task = GetCurrentTimeAsync();
+                m.Reply(task);
+            });
         }
 
         // IsActive=false にしないと、WeakReference が(すぐに?)解除されないので Exception が発生します。

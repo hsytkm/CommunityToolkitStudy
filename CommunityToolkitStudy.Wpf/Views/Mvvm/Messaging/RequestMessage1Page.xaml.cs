@@ -3,6 +3,7 @@
 namespace CommunityToolkitStudy.Wpf.Views.Mvvm.Messaging;
 
 // [メッセンジャー - .NET Community Toolkit | Microsoft Docs](https://docs.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/messenger)
+// [RequestMessage<T> Class (Microsoft.Toolkit.Mvvm.Messaging.Messages) | Microsoft Docs](https://docs.microsoft.com/en-us/dotnet/api/microsoft.toolkit.mvvm.messaging.messages.requestmessage-1)
 public sealed partial class RequestMessage1Page : MyPageControlBase
 {
     public RequestMessage1Page()
@@ -24,12 +25,12 @@ internal sealed partial class RequestMessage1ViewModel : ObservableObject, IDisp
         // called when IsActive changes to true.
         protected override void OnActivated()
         {
-            Messenger.Register<CurrentTime1RequestMessage>(this,
-                static (r, m) =>   // may be r=receiver, m=message
-                {
-                    var timeNow = TimeOnly.FromDateTime(DateTime.Now);
-                    m.Reply(timeNow);
-                });
+            Messenger.Register<CurrentTime1RequestMessage>(this, static (r, m) =>
+            {
+                // r=recipient, m=message
+                var timeNow = TimeOnly.FromDateTime(DateTime.Now);
+                m.Reply(timeNow);
+            });
         }
 
 #if false   // WeakReferenceMessenger なので自分で解除しなくても良さげ。

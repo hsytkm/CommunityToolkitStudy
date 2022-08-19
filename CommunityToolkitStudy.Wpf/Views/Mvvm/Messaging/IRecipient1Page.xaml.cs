@@ -3,6 +3,7 @@
 namespace CommunityToolkitStudy.Wpf.Views.Mvvm.Messaging;
 
 // [メッセンジャー - .NET Community Toolkit | Microsoft Docs](https://docs.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/messenger)
+// [IRecipient<TMessage> Interface (Microsoft.Toolkit.Mvvm.Messaging) | Microsoft Docs](https://docs.microsoft.com/en-us/dotnet/api/microsoft.toolkit.mvvm.messaging.irecipient-1)
 public sealed partial class IRecipient1Page : MyPageControlBase
 {
     public IRecipient1Page()
@@ -33,6 +34,7 @@ internal sealed partial class IRecipient1ViewModel
     [RelayCommand]
     void ClearTime() => LatestTime = "";
 
+    // RegisterAll() で登録されるそうです。 docsより
     public void Receive(PropertyChangedMessage<TimeOnly> message)
     {
         // 3. 差出元は不明で(型とプロパティ名から判定で)メッセージを監視して値を取得します。疎結合
