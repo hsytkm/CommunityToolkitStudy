@@ -33,7 +33,7 @@ internal sealed partial class AsyncRelayCommand1ViewModel : ObservableObject
     async Task CountUp1Async()  // ValueTask は使用できません
     {
         // https://docs.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/generators/relaycommand#asynchronous-commands
-        await Task.Delay(500);
+        await Task.Delay(500).ConfigureAwait(true);
         Value1++;
     }
 
@@ -46,7 +46,7 @@ internal sealed partial class AsyncRelayCommand1ViewModel : ObservableObject
         // CancellationToken の指定が必要になります。
         try
         {
-            await Task.Delay(1500, token);
+            await Task.Delay(1500, token).ConfigureAwait(true);
             Value2 += value;
         }
         catch (TaskCanceledException) { }
@@ -61,7 +61,7 @@ internal sealed partial class AsyncRelayCommand1ViewModel : ObservableObject
         // (AllowConcurrentExecutions = true) を付けると、
         // 非同期処理の実行中も CanExecute が false にならず、同時実行を許可できます。
         // CancellationToken が指定されていたら 元の Token が取り消されます。
-        await Task.Delay(2000);
+        await Task.Delay(2000).ConfigureAwait(true);
         Value3 += value;
     }
 

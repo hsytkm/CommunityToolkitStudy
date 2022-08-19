@@ -3,19 +3,19 @@
 namespace CommunityToolkitStudy.Wpf.Views.Mvvm.Messaging;
 
 // [メッセンジャー - .NET Community Toolkit | Microsoft Docs](https://docs.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/messenger)
-public sealed partial class RequestMessage1Page : MyPageControlBase
+public sealed partial class AsyncRequestMessage1Page : MyPageControlBase
 {
-    public RequestMessage1Page()
+    public AsyncRequestMessage1Page()
     {
-        DataContext = new RequestMessage1ViewModel();
+        DataContext = new AsyncRequestMessage1ViewModel();
         InitializeComponent();
     }
 }
 
-internal sealed partial class RequestMessage1ViewModel : ObservableObject, IDisposable
+internal sealed partial class AsyncRequestMessage1ViewModel : ObservableObject, IDisposable
 {
     // 現在時刻を要求するメッセージです
-    sealed class CurrentTime1RequestMessage : RequestMessage<TimeOnly> { }
+    sealed class CurrentTime1AsyncRequestMessage : AsyncRequestMessage<TimeOnly> { }
 
     sealed /*partial*/ class TimePublisherViewModel : ObservableRecipient, IDisposable
     {
@@ -24,22 +24,20 @@ internal sealed partial class RequestMessage1ViewModel : ObservableObject, IDisp
         // called when IsActive changes to true.
         protected override void OnActivated()
         {
-            Messenger.Register<CurrentTime1RequestMessage>(this,
+            Messenger.Register<CurrentTime1AsyncRequestMessage>(this,
                 static (r, m) =>   // may be r=receiver, m=message
                 {
-                    var timeNow = TimeOnly.FromDateTime(DateTime.Now);
-                    m.Reply(timeNow);
+                    // 1. 結果を Task<T> で返します。
+                    static async Task<TimeOnly> GetCurrentTimeAsync()
+                    {
+                        await Task.Delay(1000).ConfigureAwait(false);
+                        return TimeOnly.FromDateTime(DateTime.Now);
+                    }
+                    var task = GetCurrentTimeAsync();
+                    m.Reply(task);
                 });
         }
 
-#if false   // WeakReferenceMessenger なので自分で解除しなくても良さげ。
-        // called when IsActive changes to false.
-        protected override void OnDeactivated()
-        {
-            Messenger.Unregister<CurrentTime1RequestMessage>(this);
-            //Messenger.UnregisterAll(this);    面倒なら全解除でOK
-        }
-#endif
         // IsActive=false にしないと、WeakReference が(すぐに?)解除されないので Exception が発生します。
         public void Dispose() => IsActive = false;
     }
@@ -51,11 +49,16 @@ internal sealed partial class RequestMessage1ViewModel : ObservableObject, IDisp
     string _currentTime = "";
 
     [RelayCommand]
-    void RequestCurrentTime()
+    async Task RequestCurrentTime()
     {
         // 宛先不明でメッセージを投げて返答(現在時刻)を取得します
-        var message = WeakReferenceMessenger.Default.Send<CurrentTime1RequestMessage>();
-        CurrentTime = message.HasReceivedResponse ? message.Response.ToString($"HH:mm:ss.fff") : "";
+        var message = WeakReferenceMessenger.Default.Send<CurrentTime1AsyncRequestMessage>();
+        if (message.HasReceivedResponse)
+        {
+            // 2.Task<T> から結果を取得します。
+            var value = await message.Response;
+            CurrentTime = value.ToString($"HH:mm:ss.fff");
+        }
     }
 
     [RelayCommand]

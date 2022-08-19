@@ -47,6 +47,7 @@ internal sealed partial class RequestMessage2ViewModel : ObservableObject, IDisp
                 });
         }
 
+#if false   // WeakReferenceMessenger なので自分で解除しなくても良さげ。
         // called when IsActive changes to false.
         protected override void OnDeactivated()
         {
@@ -57,7 +58,8 @@ internal sealed partial class RequestMessage2ViewModel : ObservableObject, IDisp
             // 全解除メソッドが存在します
             Messenger.UnregisterAll(this);
         }
-
+#endif
+        // IsActive=false にしないと、WeakReference が(すぐに?)解除されないので Exception が発生します。
         public void Dispose() => IsActive = false;
     }
 
