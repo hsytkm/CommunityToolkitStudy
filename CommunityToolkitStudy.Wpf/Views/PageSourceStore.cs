@@ -15,7 +15,7 @@ internal static class PageSourceStore
          * WeakReferenceMessenger
          * StrongReferenceMessenger     手動での解除が必要ですが、メモリ使用量が少なくパフォーマンス良いです
          */
-        //new PageSourceProvider<Page>(),
+        new PageSourceProvider<StrongReferenceMessenger1Page>(),
 
         // Mvvm.ComponentModel
         new PageSourceProvider<INotifyPropertyChanged1Page>(),
@@ -40,6 +40,7 @@ internal static class PageSourceStore
         new PageSourceProvider<IRecipient1Page>(),
         new PageSourceProvider<CollectionRequestMessage1Page>(),
         new PageSourceProvider<AsyncCollectionRequestMessage1Page>(),
+        new PageSourceProvider<StrongReferenceMessenger1Page>(),
 
     };
 
