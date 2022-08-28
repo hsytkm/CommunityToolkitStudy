@@ -21,7 +21,7 @@
             <system:Double x:Key="FontSizeItemTitle">16</system:Double>
             <system:Double x:Key="FontSizeItemSubtitle">12</system:Double>
             <system:Double x:Key="FontSizeItemKeywords">8</system:Double>
-            <system:Double x:Key="FontSizeTitle">20</system:Double>
+            <system:Double x:Key="FontSizeTitle">24</system:Double>
             <system:Double x:Key="FontSizeSubtitle">14</system:Double>
             <system:Double x:Key="FontSizeDescription">12</system:Double>
             <system:Double x:Key="FontSizeKeywords">12</system:Double>

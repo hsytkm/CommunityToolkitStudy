@@ -65,6 +65,13 @@ public abstract class MyPageControlBase : UserControl, IDisposable
         _baseLinkUrl = baseUrl + absUrl;
     }
 
+    internal void RequestNavigate(object sender, RequestNavigateEventArgs e)
+    {
+        var processStartInfo = new ProcessStartInfo(e.Uri.AbsoluteUri) { UseShellExecute = true };
+        _ = Process.Start(processStartInfo);
+        e.Handled = true;
+    }
+
     private Panel GetHeaderPanel(string description)
     {
         //<Grid Margin="0,0,0,10" DockPanel.Dock="Top">
@@ -91,13 +98,6 @@ public abstract class MyPageControlBase : UserControl, IDisposable
         //        </Hyperlink>
         //    </TextBlock>
         //</Grid>
-        static void RequestNavigate(object sender, RequestNavigateEventArgs e)
-        {
-            var processStartInfo = new ProcessStartInfo(e.Uri.AbsoluteUri) { UseShellExecute = true };
-            _ = Process.Start(processStartInfo);
-            e.Handled = true;
-        }
-
         var grid = new Grid()
         {
             Margin = new Thickness(0, 0, 0, 10),

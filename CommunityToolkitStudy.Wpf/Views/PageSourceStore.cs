@@ -11,12 +11,10 @@ internal static class PageSourceStore
     // [Community Toolkits のドキュメント - .NET Community Toolkit | Microsoft Docs](https://docs.microsoft.com/ja-jp/dotnet/communitytoolkit/)
     internal static IReadOnlyList<IPageSourceProvider> All { get; } = new IPageSourceProvider[]
     {
-        /*
-         * WeakReferenceMessenger
-         * StrongReferenceMessenger     手動での解除が必要ですが、メモリ使用量が少なくパフォーマンス良いです
-         */
-        new PageSourceProvider<StrongReferenceMessenger1Page>(),
+        //new PageSourceProvider<Page>(),
 
+        new PageSourceProvider<WelcomePage>(),
+        
         // Mvvm.ComponentModel
         new PageSourceProvider<INotifyPropertyChanged1Page>(),
         new PageSourceProvider<ObservableProperty1Page>(),
