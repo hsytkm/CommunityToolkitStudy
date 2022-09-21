@@ -5,6 +5,7 @@ namespace CommunityToolkitStudy.Wpf.Services;
 
 public interface IViewModelProvider
 {
+    object? GetViewModel(Type viewType);
     object? GetViewModel<TView>() where TView : FrameworkElement;
 }
 
@@ -41,12 +42,18 @@ internal sealed class MyServiceProvider : IServiceProvider, IViewModelProvider
 
     public object? GetService(Type serviceType) => _provider.GetService(serviceType);
 
-    public object? GetViewModel<TView>()
-        where TView : FrameworkElement
+    public object? GetViewModel(Type viewType)
     {
-        if (_viewToViewModelDict.TryGetValue(typeof(TView), out var vmType))
+        if (_viewToViewModelDict.ContainsKey(viewType))
+        {
+            var vmType = _viewToViewModelDict[viewType];
             return GetService(vmType);
+        }
 
-        throw new KeyNotFoundException($"View Type is {typeof(TView).FullName}.");
+        throw new KeyNotFoundException($"View Type is {viewType.FullName}.");
     }
+
+    public object? GetViewModel<TView>() where TView : FrameworkElement =>
+        GetViewModel(typeof(TView));
+
 }

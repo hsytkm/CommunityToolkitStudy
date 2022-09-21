@@ -33,12 +33,15 @@ public sealed partial class App : Application
         return provider.BuildServiceProvider();
     }
 
-    public object GetViewModel<T>() where T : FrameworkElement
+    public object GetViewModel(Type viewType)
     {
-        if (_serviceProvider.GetViewModel<T>() is not { } viewModel)
-            throw new ArgumentException($"{typeof(T)} needs to be registered in ConfigureServices within App.xaml.cs.");
+        if (_serviceProvider.GetViewModel(viewType) is not { } viewModel)
+            throw new ArgumentException($"{viewType} needs to be registered in ConfigureServices within App.xaml.cs.");
         return viewModel;
     }
+
+    public object GetViewModel<T>() where T : FrameworkElement =>
+        GetViewModel(typeof(T));
 
     private void Application_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
     {

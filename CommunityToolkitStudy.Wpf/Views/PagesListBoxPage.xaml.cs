@@ -7,7 +7,8 @@ public partial class PagesListBoxPage : UserControl
     public PagesListBoxPage()
     {
         // ViewType から ViewModelType を引っ張っています
-        DataContext = App.Current.GetViewModel<PagesListBoxPage>();
+        //DataContext = App.Current.GetViewModel<PagesListBoxPage>();
+
         InitializeComponent();
 
         Loaded += PagesListBoxPage_Loaded;
