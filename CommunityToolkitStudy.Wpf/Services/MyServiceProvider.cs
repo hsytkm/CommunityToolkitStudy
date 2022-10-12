@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CommunityToolkitStudy.Wpf.Services;
 
-public interface IViewModelProvider
+public interface IViewModelProvider : IDisposable
 {
     object? GetViewModel(Type viewType);
     object? GetViewModel<TView>() where TView : FrameworkElement;
@@ -32,12 +32,12 @@ internal sealed class MyServiceProviderSource
 /// <summary>
 /// ServiceProvider that bind View and ViewModel.
 /// </summary>
-internal sealed class MyServiceProvider : IServiceProvider, IViewModelProvider
+internal sealed class MyServiceProvider : IServiceProvider, IViewModelProvider, IDisposable
 {
-    readonly IServiceProvider _provider;
+    readonly ServiceProvider _provider;
     readonly IReadOnlyDictionary<Type, Type> _viewToViewModelDict;
 
-    public MyServiceProvider(IServiceProvider provider, IReadOnlyDictionary<Type, Type> viewToViewModelDict) =>
+    public MyServiceProvider(ServiceProvider provider, IReadOnlyDictionary<Type, Type> viewToViewModelDict) =>
         (_provider, _viewToViewModelDict) = (provider, viewToViewModelDict);
 
     public object? GetService(Type serviceType) => _provider.GetService(serviceType);
@@ -56,4 +56,5 @@ internal sealed class MyServiceProvider : IServiceProvider, IViewModelProvider
     public object? GetViewModel<TView>() where TView : FrameworkElement =>
         GetViewModel(typeof(TView));
 
+    public void Dispose() => _provider.Dispose();
 }

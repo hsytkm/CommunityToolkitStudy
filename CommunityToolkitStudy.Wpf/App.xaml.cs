@@ -17,6 +17,9 @@ public sealed partial class App : Application
     {
         _serviceProvider = ConfigureServices();
         Ioc.Default.ConfigureServices(_serviceProvider);
+
+        // 実行完了が保障されません。ダメな実装です。
+        Exit += (_, _) => _serviceProvider.Dispose();
     }
 
     static MyServiceProvider ConfigureServices()
