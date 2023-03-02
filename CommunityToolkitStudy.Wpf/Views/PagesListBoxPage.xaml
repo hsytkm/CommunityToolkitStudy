@@ -39,6 +39,7 @@
         </DockPanel>
 
         <ListBox
+            HorizontalAlignment="Stretch"
             DockPanel.Dock="Left"
             ItemsSource="{Binding PagesSource, Mode=OneTime}"
             SelectedItem="{Binding SelectedPageSource, Mode=TwoWay}">
@@ -47,7 +48,7 @@
             <ListBox.ItemContainerStyle>
                 <Style BasedOn="{StaticResource {x:Type ListBoxItem}}" TargetType="{x:Type ListBoxItem}">
                     <Setter Property="OverridesDefaultStyle" Value="True" />
-                    <Setter Property="HorizontalAlignment" Value="Left" />
+                    <Setter Property="HorizontalAlignment" Value="Stretch" />
                     <Setter Property="VerticalAlignment" Value="Center" />
                     <Setter Property="HorizontalContentAlignment" Value="Left" />
                     <Setter Property="VerticalContentAlignment" Value="Center" />

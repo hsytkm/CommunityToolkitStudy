@@ -67,14 +67,11 @@ CommunityToolkit.Mvvm  8.0.0
 
 ### 理解できてない
 
-1. [FlowExceptionsToTaskScheduler](https://docs.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/generators/relaycommand#handling-asynchronous-exceptions)
-2. [NotifyDataErrorInfo](https://docs.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/generators/observableproperty#requesting-property-validation)
-3. [NotifyPropertyChangedRecipients](https://docs.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/generators/observableproperty#sending-notification-messages)
+[FlowExceptionsToTaskScheduler](https://docs.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/generators/relaycommand#handling-asynchronous-exceptions)
 
 
 
 ### ポイント
 
 INotifyPropertyChanged ソースジェネは使わなくて済むなら使うなってよ。[INotifyPropertyChanged 属性 - .NET Community Toolkit | Microsoft Docs](https://docs.microsoft.com/ja-jp/dotnet/communitytoolkit/mvvm/generators/inotifypropertychanged)
-
 
